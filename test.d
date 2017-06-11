@@ -8,6 +8,7 @@ import std.algorithm;
 import std.string;
 import std.exception;
 
+alias println = writeln;
 
 int main ()
 {
@@ -67,7 +68,7 @@ struct TestRunner
     {
         auto src = buildNormalizedPath(workingDirectory, clang.versionedLibclang);
         auto dest = buildNormalizedPath(workingDirectory, clang.libclang);
-
+println("src: ", src, " dest: ", dest, " src exists: ", src.exists, " dest exists: ", dest.exists);
         if (exists(dest))
             remove(dest);
 
@@ -219,6 +220,7 @@ private:
     {
         auto src = archivePath(clang.filename);
         auto dest = clangPath();
+        println("extractionPath - src: ", src, " dest: ", dest);
         mkdirRecurse(dest);
 
         version (Posix)
